@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>SWAPI</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="style.css">
+</head>
+
+
+<body onLoad="tab('#swapi'), warna('swapi')">
+<center>
+  <table id="swapi" border="1">
+  </table>
+</center>
+
+<!-- <div class="fltr"></div>
+ -->
+	
+	<script>
+	var sw =  [
+        {
+            "name": "Alderaan", 
+            "rotation_period": "24", 
+            "orbital_period": "364", 
+            "diameter": "12500", 
+            "climate": "temperate", 
+            "gravity": "1 standard", 
+            "terrain": "grasslands, mountains", 
+            "surface_water": "40", 
+            "population": "2000000000", 
+            
+        }, 
+        {
+            "name": "Yavin IV", 
+            "rotation_period": "24", 
+            "orbital_period": "4818", 
+            "diameter": "10200", 
+            "climate": "temperate, tropical", 
+            "gravity": "1 standard", 
+            "terrain": "jungle, rainforests", 
+            "surface_water": "8", 
+            "population": "1000", 
+           
+        }, 
+        {
+            "name": "Hoth", 
+            "rotation_period": "23", 
+            "orbital_period": "549", 
+            "diameter": "7200", 
+            "climate": "frozen", 
+            "gravity": "1.1 standard", 
+            "terrain": "tundra, ice caves, mountain ranges", 
+            "surface_water": "100", 
+            "population": "unknown", 
+            
+        }, 
+        {
+            "name": "Dagobah", 
+            "rotation_period": "23", 
+            "orbital_period": "341", 
+            "diameter": "8900", 
+            "climate": "murky", 
+            "gravity": "N/A", 
+            "terrain": "swamp, jungles", 
+            "surface_water": "8", 
+            "population": "unknown", 
+            
+        }, 
+        {
+            "name": "Bespin", 
+            "rotation_period": "12", 
+            "orbital_period": "5110", 
+            "diameter": "118000", 
+            "climate": "temperate", 
+            "gravity": "1.5 (surface), 1 standard (Cloud City)", 
+            "terrain": "gas giant", 
+            "surface_water": "0", 
+            "population": "6000000", 
+            
+        }, 
+        {
+            "name": "Endor", 
+            "rotation_period": "18", 
+            "orbital_period": "402", 
+            "diameter": "4900", 
+            "climate": "temperate", 
+            "gravity": "0.85 standard", 
+            "terrain": "forests, mountains, lakes", 
+            "surface_water": "8", 
+            "population": "30000000", 
+            
+        }, 
+        {
+            "name": "Naboo", 
+            "rotation_period": "26", 
+            "orbital_period": "312", 
+            "diameter": "12120", 
+            "climate": "temperate", 
+            "gravity": "1 standard", 
+            "terrain": "grassy hills, swamps, forests, mountains", 
+            "surface_water": "12", 
+            "population": "4500000000", 
+            
+        }, 
+        {
+            "name": "Coruscant", 
+            "rotation_period": "24", 
+            "orbital_period": "368", 
+            "diameter": "12240", 
+            "climate": "temperate", 
+            "gravity": "1 standard", 
+            "terrain": "cityscape, mountains", 
+            "surface_water": "unknown", 
+            "population": "1000000000000", 
+            
+        }, 
+        {
+            "name": "Kamino", 
+            "rotation_period": "27", 
+            "orbital_period": "463", 
+            "diameter": "19720", 
+            "climate": "temperate", 
+            "gravity": "1 standard", 
+            "terrain": "ocean", 
+            "surface_water": "100", 
+            "population": "1000000000", 
+            
+        }, 
+        {
+            "name": "Geonosis", 
+            "rotation_period": "30", 
+            "orbital_period": "256", 
+            "diameter": "11370", 
+            "climate": "temperate, arid", 
+            "gravity": "0.9 standard", 
+            "terrain": "rock, desert, mountain, barren", 
+            "surface_water": "5", 
+            "population": "100000000000", 
+            
+        }
+    ];
+
+	function tab(slct) {
+  	var columns = colhead(sw, slct);
+
+	  for (var i = 0; i < sw.length; i++) {
+	    var row$ = $('<tr/>');
+	    for (var idxCol = 0; idxCol < columns.length; idxCol++) {
+	      var cellValue = sw[i][columns[idxCol]];
+	      if (cellValue == null) cellValue = "";
+	      row$.append($('<td/>').html(cellValue));
+	    }
+	    $(slct).append(row$);
+	  }
+	}
+
+	function colhead(sw, slct) {
+	  var columnSet = [];
+	  var headerTr$ = $('<tr/>');
+
+	  for (var i = 0; i < sw.length; i++) {
+	    var rowHash = sw[i];
+	    for (var key in rowHash) {
+	      if ($.inArray(key, columnSet) == -1) {
+	        columnSet.push(key);
+	        headerTr$.append($('<th/>').html(key));
+	      }
+	    }
+	  }
+	  $(slct).append(headerTr$);
+
+	  return columnSet;
+	}
+
+	// function cekDiameter(key){
+	// 	return key > 10000;
+	// }
+
+	// var arr = [];
+
+	// document.querySelector('fltr').innerHTML = sw.filter(cekDiameter);
+
+
+	function warna(id){
+	if(document.getElementsByTagName){  
+		
+		var table = document.getElementById(id);  
+		var rows = table.getElementsByTagName("tr"); 
+		 
+		for(i = 0; i < rows.length; i++){          
+			if(i % 2 == 0){
+				rows[i].className = "genap";
+			}else{
+				rows[i].className = "ganjil";
+			}      
+		}
+	}
+}
+	</script>
+</body>
+</html>
